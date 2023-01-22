@@ -1,1 +1,1 @@
-export const Main = () => <h1>Welcom to the shop</h1>
+export const Main = () => <h1>Welcome to the shop</h1>

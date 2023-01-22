@@ -9,9 +9,7 @@ function App() {
   return (
     <>
       <Header />
-      <hr />
       <Outlet />
-      <hr />
       <Footer />
     </>
   )
