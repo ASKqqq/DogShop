@@ -1,28 +1,50 @@
 import classNames from 'classnames'
-import autStyles from './Autentification.module.css'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import {
+  Formik, Form, Field, ErrorMessage,
+} from 'formik'
+import regStyles from './Autentification.module.css'
+import { validatorSingIp } from './validatorSingIn'
+
+const initialValues = {
+  email: '',
+  password: '',
+}
 
 export const AutentificationPage = () => (
-  <div className="container">
-    <form>
-      <div className={autStyles.group}>
-        <input type="email" placeholder="name@example.com" />
-        <span className={autStyles.highlight} />
-        <span className="bar" />
-      </div>
-      <div className={autStyles.group}>
-        <input type="password" placeholder="password here" />
-        <span className={autStyles.highlight} />
-        <span className="bar" />
-      </div>
-      <button
-        type="button"
-        className={classNames(autStyles.button, autStyles.buttonBlue)}
-      >
-        Sign In
-        <div className={classNames(autStyles.ripples, autStyles.buttonRipples)}>
-          <span className={autStyles.ripplesCircle} />
+  <Formik
+    initialValues={initialValues}
+    validationSchema={validatorSingIp}
+    onSubmit={(values) => {
+      console.log(values)
+    }}
+  >
+    <Form>
+      <div className="container">
+        <div className={regStyles.group}>
+          <Field name="email" type="email" placeholder="name@example.com" />
+          <ErrorMessage name="email" />
+          <span className={regStyles.highlight} />
+          <span className="bar" />
         </div>
-      </button>
-    </form>
-  </div>
+        <div className={regStyles.group}>
+          <Field name="password" placeholder="password here" />
+          <ErrorMessage name="password" />
+          <span className={regStyles.highlight} />
+          <span className="bar" />
+        </div>
+        <button
+          type="button"
+          className={classNames(regStyles.button, regStyles.buttonBlue)}
+        >
+          Sign Ip
+          <div
+            className={classNames(regStyles.ripples, regStyles.buttonRipples)}
+          >
+            <span className={regStyles.ripplesCircle} />
+          </div>
+        </button>
+      </div>
+    </Form>
+  </Formik>
 )
