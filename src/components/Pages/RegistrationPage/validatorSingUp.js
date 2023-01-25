@@ -2,12 +2,12 @@
 import * as Yup from 'yup'
 
 export const validatorSingUp = Yup.object({
-  email: Yup.string().email('Invalid email address').required('Required'),
+  email: Yup.string().email('Введите корректный адрес почты').required('Обязателоьное поле.'),
   group: Yup.string()
-    .max(20, 'Must be 20 characters or less')
-    .required('Required'),
+    .max(20, 'Должно быть не более 20 символов.')
+    .required('Обязателоьное поле.'),
   password: Yup.string()
-    .required('No password provided.')
-    .min(8, 'Password is too short - should be 8 chars minimum.')
-    .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
+    .required('Введите пароль.')
+    .min(8, 'Пароль слишком короткий - минимум 8 символов.')
+    .matches(/[a-zA-Z]/, 'Пароль может содержать только латинские буквы.'),
 })
