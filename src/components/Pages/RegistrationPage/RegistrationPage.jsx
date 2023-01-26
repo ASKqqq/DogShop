@@ -13,6 +13,21 @@ const initialValues = {
 }
 
 export const RegistrationPage = () => (
+  // const navigate = useNavigate()
+  // const {mutateAsync, isLoading} = useMutation({
+  //   mutationFn: (data) => {
+
+  //     return fetch('https://api.react-learning.ru/signup', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       }
+  //       body: JSON.stringify(data),
+  //     })
+  //   }
+
+  // })
+
   <Formik
     initialValues={initialValues}
     validationSchema={validatorSingUp}

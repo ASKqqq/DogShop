@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import App from './App'
 import { ProductsPage } from './components/Pages/ProductsPage/ProductsPage'
 import { RegistrationPage } from './components/Pages/RegistrationPage/RegistrationPage'
@@ -34,9 +36,19 @@ const router = createBrowserRouter([
   },
 ])
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false, // default: true
+    },
+  },
+})
+
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </React.StrictMode>,
 )
