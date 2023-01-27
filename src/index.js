@@ -10,6 +10,7 @@ import { ProductsPage } from './components/Pages/ProductsPage/ProductsPage'
 import { RegistrationPage } from './components/Pages/RegistrationPage/RegistrationPage'
 import { AutentificationPage } from './components/Pages/AutentificationPage/AutentificationPage'
 import { Main } from './components/Main/Main'
+import { QueryContextProvider } from './context/QueryContextProvider'
 
 const router = createBrowserRouter([
   {
@@ -47,8 +48,10 @@ const queryClient = new QueryClient({
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
+    <QueryContextProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </QueryContextProvider>
   </React.StrictMode>,
 )
