@@ -57,7 +57,7 @@ export const RegistrationPage = () => {
             type="submit"
             className={classNames(regStyles.button, regStyles.buttonBlue)}
           >
-            Sign Up
+            Sign
             <div
               className={classNames(regStyles.ripples, regStyles.buttonRipples)}
             >
