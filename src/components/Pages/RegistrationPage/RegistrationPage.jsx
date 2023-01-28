@@ -47,7 +47,7 @@ export const RegistrationPage = () => {
             <span className="bar" />
           </div>
           <div className={regStyles.group}>
-            <Field name="password" placeholder="password here" />
+            <Field name="password" placeholder="password here" type="password" />
             <ErrorMessage name="password" />
             <span className={regStyles.highlight} />
             <span className="bar" />

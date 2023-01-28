@@ -7,10 +7,12 @@
   padding: 55px;
   border-radius: 6px;
   border-width: 8px;
-  height: 600px;
+  /* height: 600px; */
+  max-height: min-content;
+  max-width: min-content;
   border: 2px solid rgb(8, 0, 57);
   border-radius: 6px;
-  box-shadow: 0px 0px 15px rgb(8, 0, 57);
+  /* box-shadow: 0px 0px 15px rgb(8, 0, 57); */
   display: grid;
 }
 
@@ -21,10 +23,18 @@
   height: 60px;
 }
 
+.h2 {
+  color: red;
+}
+
+.h4Name {
+  font-weight: 600;
+}
+/* 
 .descriptionCardPorduct::-webkit-scrollbar {
   width: 10px;
   /* ширина scrollbar */
-}
+
 
 .descriptionCardPorduct::-webkit-scrollbar-track {
   background: #FF8900;
@@ -43,7 +53,7 @@
 
 
 .styleForm button {
-  background: #FF8900;
+  background: #fbc02d;
   color: rgb(8, 0, 57);
   text-decoration: none;
   border-radius: 6px;
@@ -57,10 +67,10 @@
   cursor: pointer;
   padding: 15px;
 }
-
+/* 
 .styleForm button:hover {
   box-shadow: 0px -5px 0 rgb(8, 0, 57) inset;
-}
+} */
 
 .imgProdact {
   width: 70px;
