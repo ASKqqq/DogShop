@@ -20,12 +20,14 @@ export const AutentificationPage = () => {
 
   const { setToken } = useQueryContext()
 
-  const { mutateAsync, isLoading } = useMutation({ mutationFn: (data) => dogFoodApi.signIn(data) })
+  const { mutateAsync, isLoading } = useMutation({
+    mutationFn: (values) => dogFoodApi.signIn(values).then((data) => {
+      setToken(data.token)
+    }),
+  })
 
   const submitHandler = async (values) => {
-    const response = await mutateAsync(values)
-    const { token } = response
-    setToken(token)
+    await mutateAsync(values)
     setTimeout(() => {
       navigate('/products')
     })
@@ -56,7 +58,7 @@ export const AutentificationPage = () => {
             type="submit"
             className={classNames(regStyles.button, regStyles.buttonBlue)}
           >
-            Sign Ip
+            Sign In
             <div
               className={classNames(regStyles.ripples, regStyles.buttonRipples)}
             >

@@ -18,7 +18,7 @@ const initialValues = {
 export const RegistrationPage = () => {
   const navigate = useNavigate()
   const { mutateAsync, isLoading } = useMutation({
-    mutationFn: (data) => dogFoodApi.signUp(data),
+    mutationFn: (values) => dogFoodApi.signUp(values),
   })
 
   const submitHandler = async (values) => {

@@ -1,17 +1,15 @@
-
 header {
-  background-color: #FFEB3B;
+  background-color: #ffeb3b;
   font-family: 'Open Sans', sans-serif;
-	font-size: 16px;
-	line-height: 1.5;
-
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 .wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #FFEB3B;
+  background-color: #ffeb3b;
   padding: 20px 0px;
   margin: 0;
 }
@@ -19,7 +17,6 @@ header {
 .wraplogo {
   display: flex;
   align-items: center;
-  
 }
 
 header logo {
@@ -27,21 +24,27 @@ header logo {
   font-weight: bold;
 }
 
+.nav {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
 .nav a:hover {
-  background-color: #FBC02D;
+  background-color: #fbc02d;
   color: #212121;
   padding: 10px;
   border-radius: 5px;
 }
-
+/* 
 .nav ul {
-  display: flex;
+  /* display: flex;
   gap: 30px;
-  list-style: none;
-  }
+  list-style: none; */
 
+ */
 .nav a {
   text-decoration: none;
   color: black;
   font-weight: 600;
-  }
+}
