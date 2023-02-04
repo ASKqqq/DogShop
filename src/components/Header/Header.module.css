@@ -28,6 +28,7 @@ header logo {
   display: flex;
   gap: 30px;
   list-style: none;
+  margin-left: 50px;
 }
 
 .nav a:hover {
@@ -46,4 +47,13 @@ header logo {
   text-decoration: none;
   color: black;
   font-weight: 600;
+}
+
+.counter {
+  display: flex;
+}
+
+.inputfind input {
+  border-radius: 100px;
+  margin: 0 20px 0 20px;
 }

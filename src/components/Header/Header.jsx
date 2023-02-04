@@ -17,10 +17,25 @@ export const Header = () => {
               <img src={logo} className="logo" alt="logo" />
             </Link>
           </div>
-          <p>aaaaa</p>
+          <div className={headerStayles.inputfind}>
+            <input
+              type="text"
+              className="form-control"
+              id="floatingInput"
+              placeholder="find..."
+            />
+          </div>
           <nav className={headerStayles.nav}>
             <li>
-              <FontAwesomeIcon icon={faCartShopping} size="xl" />
+              <div className={headerStayles.counter}>
+                <FontAwesomeIcon icon={faCartShopping} size="xl" />
+                <span
+                  className="top-0 start-100
+              translate-middle badge rounded-pill bg-danger"
+                >
+                  4
+                </span>
+              </div>
             </li>
             <div>
               {token ? (
