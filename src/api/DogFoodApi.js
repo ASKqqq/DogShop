@@ -1,16 +1,16 @@
 class DogFoodApi {
   constructor({ baseUrl }) {
     this.baseUrl = baseUrl
-    this.token = ''
+    // this.token = ''
   }
 
   getAuthorizationHeader() {
     return `Bearer ${this.token}`
   }
 
-  setToken(token) {
-    this.token = token
-  }
+  // setToken(token) {
+  //   this.token = token
+  // }
 
   async checkToken() {
     if (!this.token) throw new Error('Отсутствует токен')
@@ -100,12 +100,12 @@ class DogFoodApi {
     return res.json()
   }
 
-  async getAllProducts() {
-    this.checkToken()
+  async getAllProducts(token) {
+    this.checkToken(token)
 
     const res = await fetch(`${this.baseUrl}/products`, {
       headers: {
-        authorization: this.getAuthorizationHeader(),
+        authorization: this.getAuthorizationHeader(token),
       },
     })
 
@@ -122,12 +122,12 @@ class DogFoodApi {
     return res.json()
   }
 
-  async getProductById(productId) {
-    this.checkToken()
+  async getProductById(productId, token) {
+    this.checkToken(token)
 
     const res = await fetch(`${this.baseUrl}/products/${productId}`, {
       headers: {
-        authorization: this.getAuthorizationHeader(),
+        authorization: this.getAuthorizationHeader(token),
       },
     })
 
