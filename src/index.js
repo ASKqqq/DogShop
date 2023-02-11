@@ -12,7 +12,7 @@ import { ProductsPage } from './components/Pages/ProductsPage/ProductsPage'
 import { RegistrationPage } from './components/Pages/RegistrationPage/RegistrationPage'
 import { AutentificationPage } from './components/Pages/AutentificationPage/AutentificationPage'
 import { Main } from './components/Main/Main'
-import { store } from './redux/stor'
+import { store } from './redux/store'
 
 const router = createBrowserRouter([
   {

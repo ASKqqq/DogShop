@@ -2,17 +2,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { DF_TOKEN_KEY } from './constats'
 import { getInitState } from './ininState'
+import { userReducer } from './slices/userSlise'
 
 export const store = configureStore({
   reducer: {
-    // eslint-disable-next-line no-undef
     user: userReducer,
-    // eslint-disable-next-line no-undef
-    cart: cartReducer,
-    // eslint-disable-next-line no-undef
-    filter: filterReducer,
   },
-  preloadedState: getInitState,
+  preloadedState: getInitState(),
 })
 
 store.subscribe(() => {

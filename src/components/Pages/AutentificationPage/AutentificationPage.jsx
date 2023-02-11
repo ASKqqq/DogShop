@@ -4,9 +4,12 @@ import classNames from 'classnames'
 import {
   Formik, Form, Field, ErrorMessage,
 } from 'formik'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { dogFoodApi } from '../../../api/DogFoodApi'
-import { useQueryContext } from '../../../context/QueryContextProvider'
+import { setUserToken } from '../../../redux/slices/userSlise'
+// import { Loader } from '../../Loader/Loader'
 import regStyles from './Autentification.module.css'
 import { validatorSingIp } from './validatorSingIn'
 
@@ -16,13 +19,14 @@ const initialValues = {
 }
 
 export const AutentificationPage = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const { setToken } = useQueryContext()
-
-  const { mutateAsync, isLoading } = useMutation({
+  const {
+    mutateAsync, isLoading,
+  } = useMutation({
     mutationFn: (values) => dogFoodApi.signIn(values).then((data) => {
-      setToken(data.token)
+      dispatch(setUserToken(data.token))
     }),
   })
 
@@ -32,6 +36,20 @@ export const AutentificationPage = () => {
       navigate('/products')
     })
   }
+
+  // if (isError) {
+  //   return (
+  //     <p>
+  //       Произошла ошибка:
+  //       {' '}
+  //       {error.message}
+  //     </p>
+  //   )
+  // }
+
+  // if (isLoading) {
+  //   return <p><Loader /></p>
+  // }
 
   return (
     <Formik

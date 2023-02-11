@@ -1,13 +1,20 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
-import { useQueryContext } from '../../context/QueryContextProvider'
+// import { useQueryContext } from '../../context/QueryContextProvider'
 import logo from '../../img/logo.png'
+import { getUserSelector, logOut } from '../../redux/slices/userSlise'
 import headerStayles from './Header.module.css'
 
 export const Header = () => {
-  const { deleteToken, token } = useQueryContext()
+  // const { deleteToken, token } = useQueryContext()
+  const token = useSelector(getUserSelector)
+  const dispatch = useDispatch()
+  const deleteToken = () => {
+    dispatch(logOut())
+  }
   return (
     <header>
       <div className="container">

@@ -6,6 +6,7 @@ import {
 } from 'formik'
 import { useNavigate } from 'react-router-dom'
 import { dogFoodApi } from '../../../api/DogFoodApi'
+import { Loader } from '../../Loader/Loader'
 import regStyles from './Registration.module.css'
 import { validatorSingUp } from './validatorSingUp'
 
@@ -17,13 +18,29 @@ const initialValues = {
 
 export const RegistrationPage = () => {
   const navigate = useNavigate()
-  const { mutateAsync, isLoading } = useMutation({
+  const {
+    mutateAsync, isError, error, isLoading,
+  } = useMutation({
     mutationFn: (values) => dogFoodApi.signUp(values),
   })
 
   const submitHandler = async (values) => {
     await mutateAsync(values)
     navigate('/signin')
+  }
+
+  if (isError) {
+    return (
+      <p>
+        Произошла ошибка:
+        {' '}
+        {error.message}
+      </p>
+    )
+  }
+
+  if (isLoading) {
+    return <p><Loader /></p>
   }
 
   return (

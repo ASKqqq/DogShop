@@ -1,8 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { dogFoodApi } from '../../../api/DogFoodApi'
-import { useQueryContext } from '../../../context/QueryContextProvider'
+// import { useQueryContext } from '../../../context/QueryContextProvider'
+import { getUserSelector } from '../../../redux/slices/userSlise'
 import { Loader } from '../../Loader/Loader'
 import { Product } from '../Product/Product'
 import productPageStyles from './ProductsPage.module.css'
@@ -10,7 +12,8 @@ import productPageStyles from './ProductsPage.module.css'
 // export const ProductsPage = () => <h1>This page will have products</h1>
 
 export function ProductsPage() {
-  const { token } = useQueryContext()
+  // const { token } = useQueryContext()
+  const { token } = useSelector(getUserSelector)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -21,7 +24,7 @@ export function ProductsPage() {
 
   const { data, error, isLoading } = useQuery({
     queryKey: ['products', token],
-    queryFn: () => dogFoodApi.getAllProducts(),
+    queryFn: () => dogFoodApi.getAllProducts(token),
     enabled: token !== undefined,
   })
 
@@ -39,9 +42,9 @@ export function ProductsPage() {
     return <p><Loader /></p>
   }
 
-  if (data === undefined) {
-    return <p>Empty content</p>
-  }
+  // if (data === undefined) {
+  //   return <p>Empty content</p>
+  // }
 
   return (
 
