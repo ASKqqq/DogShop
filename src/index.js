@@ -5,12 +5,14 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Provider } from 'react-redux'
 import App from './App'
 import { ProductsPage } from './components/Pages/ProductsPage/ProductsPage'
 import { RegistrationPage } from './components/Pages/RegistrationPage/RegistrationPage'
 import { AutentificationPage } from './components/Pages/AutentificationPage/AutentificationPage'
 import { Main } from './components/Main/Main'
-import { QueryContextProvider } from './context/QueryContextProvider'
+import { store } from './redux/stor'
 
 const router = createBrowserRouter([
   {
@@ -48,10 +50,10 @@ const queryClient = new QueryClient({
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <QueryContextProvider>
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
         <RouterProvider router={router} />
-      </QueryClientProvider>
-    </QueryContextProvider>
+      </Provider>
+    </QueryClientProvider>
   </React.StrictMode>,
 )
