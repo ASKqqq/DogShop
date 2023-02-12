@@ -101,12 +101,12 @@ class DogFoodApi {
     return res.json()
   }
 
-  async getAllProducts(token) {
-    this.checkToken(token)
+  async getAllProducts(search, token) {
+    // this.checkToken(token)
 
-    const res = await fetch(`${this.baseUrl}/products`, {
+    const res = await fetch(`${this.baseUrl}/products?query=${search}`, {
       headers: {
-        authorization: this.getAuthorizationHeader(token),
+        authorization: `Bearer ${token}`,
       },
     })
 

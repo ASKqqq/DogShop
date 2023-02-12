@@ -3,8 +3,9 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { dogFoodApi } from '../../../api/DogFoodApi'
-// import { useQueryContext } from '../../../context/QueryContextProvider'
+import { getSearchSelector } from '../../../redux/slices/filterSlice'
 import { getUserSelector } from '../../../redux/slices/userSlise'
+import { Search } from '../../../Search/Search'
 import { Loader } from '../../Loader/Loader'
 import { Product } from '../Product/Product'
 import productPageStyles from './ProductsPage.module.css'
@@ -22,9 +23,11 @@ export function ProductsPage() {
     }
   }, [token])
 
+  const search = useSelector(getSearchSelector)
+
   const { data, error, isLoading } = useQuery({
-    queryKey: ['products', token],
-    queryFn: () => dogFoodApi.getAllProducts(token),
+    queryKey: ['products', search],
+    queryFn: () => dogFoodApi.getAllProducts(search, token),
     enabled: token !== undefined,
   })
 
@@ -39,7 +42,11 @@ export function ProductsPage() {
   }
 
   if (isLoading) {
-    return <p><Loader /></p>
+    return (
+      <p>
+        <Loader />
+      </p>
+    )
   }
 
   // if (data === undefined) {
@@ -47,8 +54,8 @@ export function ProductsPage() {
   // }
 
   return (
-
     <div className={productPageStyles.productsContainer}>
+      <Search />
       {data.products.map(({ _id: id, ...restProduct }) => (
         <Product {...restProduct} id={id} key={id} />
       ))}

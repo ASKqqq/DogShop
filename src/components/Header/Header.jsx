@@ -10,7 +10,7 @@ import headerStayles from './Header.module.css'
 
 export const Header = () => {
   // const { deleteToken, token } = useQueryContext()
-  const token = useSelector(getUserSelector)
+  const { token } = useSelector(getUserSelector)
   const dispatch = useDispatch()
   const deleteToken = () => {
     dispatch(logOut())

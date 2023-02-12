@@ -8,9 +8,9 @@ export const initState = {
     token: '',
   },
   // cart: [],
-  // filter: {
-  //   search: '',
-  // },
+  filter: {
+    search: '',
+  },
 }
 
 export const getInitState = () => {
