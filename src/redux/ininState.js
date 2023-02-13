@@ -3,7 +3,6 @@ import { DF_TOKEN_KEY } from './constats'
 export const initState = {
   user: {
     group: '',
-    name: '',
     email: '',
     token: '',
   },

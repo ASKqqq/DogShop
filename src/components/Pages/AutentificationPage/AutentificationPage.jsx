@@ -8,7 +8,7 @@ import {
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { dogFoodApi } from '../../../api/DogFoodApi'
-import { setUserToken } from '../../../redux/slices/userSlise'
+import { setNewUser } from '../../../redux/slices/userSlise'
 // import { Loader } from '../../Loader/Loader'
 import regStyles from './Autentification.module.css'
 import { validatorSingIp } from './validatorSingIn'
@@ -25,8 +25,9 @@ export const AutentificationPage = () => {
   const {
     mutateAsync, isLoading,
   } = useMutation({
-    mutationFn: (values) => dogFoodApi.signIn(values).then((data) => {
-      dispatch(setUserToken(data.token))
+    mutationFn: (values) => dogFoodApi.signIn(values).then((user) => {
+      // eslint-disable-next-line no-underscore-dangle
+      dispatch(setNewUser(user.data._id, user.token, user.data.email))
     }),
   })
 

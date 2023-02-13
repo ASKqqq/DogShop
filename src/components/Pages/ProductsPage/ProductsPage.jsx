@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { dogFoodApi } from '../../../api/DogFoodApi'
 import { getSearchSelector } from '../../../redux/slices/filterSlice'
-import { getUserSelector } from '../../../redux/slices/userSlise'
+import { getTokenSelector } from '../../../redux/slices/userSlise'
 import { Search } from '../../../Search/Search'
 import { Loader } from '../../Loader/Loader'
 import { Product } from '../Product/Product'
@@ -15,7 +15,9 @@ import { getQueryKey } from './utils'
 
 export function ProductsPage() {
   // const { token } = useQueryContext()
-  const { token } = useSelector(getUserSelector)
+  const token = useSelector(getTokenSelector)
+  console.log({ token })
+
   const navigate = useNavigate()
 
   useEffect(() => {

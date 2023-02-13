@@ -13,6 +13,4 @@ export const store = configureStore({
   preloadedState: getInitState(),
 })
 
-store.subscribe(() => {
-  window.localStorage.setItem(DF_TOKEN_KEY, JSON.stringify(store.getState()))
-})
+store.subscribe(() => window.localStorage.setItem(DF_TOKEN_KEY, JSON.stringify(store.getState())))

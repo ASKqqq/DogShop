@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 // import { useQueryContext } from '../../context/QueryContextProvider'
 import logo from '../../img/logo.png'
-import { getUserSelector, logOut } from '../../redux/slices/userSlise'
+import { getTokenSelector, logOut } from '../../redux/slices/userSlise'
 import headerStayles from './Header.module.css'
 
 export const Header = () => {
   // const { deleteToken, token } = useQueryContext()
-  const { token } = useSelector(getUserSelector)
+  const token = useSelector(getTokenSelector)
   const dispatch = useDispatch()
   const deleteToken = () => {
     dispatch(logOut())
