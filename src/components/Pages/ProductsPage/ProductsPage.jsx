@@ -9,6 +9,7 @@ import { Search } from '../../../Search/Search'
 import { Loader } from '../../Loader/Loader'
 import { Product } from '../Product/Product'
 import productPageStyles from './ProductsPage.module.css'
+import { getQueryKey } from './utils'
 
 // export const ProductsPage = () => <h1>This page will have products</h1>
 
@@ -25,13 +26,15 @@ export function ProductsPage() {
 
   const search = useSelector(getSearchSelector)
 
-  const { data, error, isLoading } = useQuery({
-    queryKey: ['products', search],
+  const {
+    data, isError, error, isLoading,
+  } = useQuery({
+    queryKey: getQueryKey(search),
     queryFn: () => dogFoodApi.getAllProducts(search, token),
-    enabled: token !== undefined,
+    enabled: !!(token),
   })
 
-  if (error) {
+  if (isError) {
     return (
       <p>
         Произошла ошибка:
@@ -54,11 +57,15 @@ export function ProductsPage() {
   // }
 
   return (
-    <div className={productPageStyles.productsContainer}>
+    <>
       <Search />
-      {data.products.map(({ _id: id, ...restProduct }) => (
-        <Product {...restProduct} id={id} key={id} />
-      ))}
-    </div>
+      <div className={productPageStyles.productsContainer}>
+
+        {data.products.map(({ _id: id, ...restProduct }) => (
+          <Product {...restProduct} id={id} key={id} />
+        ))}
+      </div>
+
+    </>
   )
 }

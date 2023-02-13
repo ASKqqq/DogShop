@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { useDebounce } from '../components/hooks/useDebounce'
 import { changeSearchFilter } from '../redux/slices/filterSlice'
 
 export const Search = () => {
@@ -7,11 +8,24 @@ export const Search = () => {
 
   const dispatch = useDispatch()
 
+  const debouncedSearchValue = useDebounce(search, 1500)
+
   const searchHandler = (e) => {
     const searchValue = e.target.value
     setSearch(searchValue)
-    dispatch(changeSearchFilter(searchValue))
   }
 
-  return <input placeholder="Найти товар..." type="text" value={search} onChange={searchHandler} />
+  useEffect(() => {
+    dispatch(changeSearchFilter(debouncedSearchValue))
+  }, [dispatch, debouncedSearchValue])
+
+  return (
+    <input
+      placeholder="Найти товар..."
+      type="text"
+      style={{ width: '500px', margin: '24px auto' }}
+      value={search}
+      onChange={searchHandler}
+    />
+  )
 }
