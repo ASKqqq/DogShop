@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { dogFoodApi } from '../../../api/DogFoodApi'
 import { setNewUser } from '../../../redux/slices/userSlise'
+import { Loader } from '../../Loader/Loader'
 // import { Loader } from '../../Loader/Loader'
 import regStyles from './Autentification.module.css'
 import { validatorSingIp } from './validatorSingIn'
@@ -23,7 +24,7 @@ export const AutentificationPage = () => {
   const navigate = useNavigate()
 
   const {
-    mutateAsync, isLoading,
+    mutateAsync, isLoading, isError, error,
   } = useMutation({
     mutationFn: (values) => dogFoodApi.signIn(values).then((user) => {
       // eslint-disable-next-line no-underscore-dangle
@@ -38,19 +39,19 @@ export const AutentificationPage = () => {
     })
   }
 
-  // if (isError) {
-  //   return (
-  //     <p>
-  //       Произошла ошибка:
-  //       {' '}
-  //       {error.message}
-  //     </p>
-  //   )
-  // }
+  if (isError) {
+    return (
+      <p>
+        Произошла ошибка:
+        {' '}
+        {error.message}
+      </p>
+    )
+  }
 
-  // if (isLoading) {
-  //   return <p><Loader /></p>
-  // }
+  if (isLoading) {
+    return <p><Loader /></p>
+  }
 
   return (
     <Formik

@@ -6,7 +6,7 @@ export const initState = {
     email: '',
     token: '',
   },
-  // cart: [],
+  cart: [],
   filter: {
     search: '',
   },

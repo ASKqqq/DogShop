@@ -16,7 +16,7 @@ import { getQueryKey } from './utils'
 export function ProductsPage() {
   // const { token } = useQueryContext()
   const token = useSelector(getTokenSelector)
-  console.log({ token })
+  // console.log({ token })
 
   const navigate = useNavigate()
 
@@ -35,6 +35,8 @@ export function ProductsPage() {
     queryFn: () => dogFoodApi.getAllProducts(search, token),
     enabled: !!(token),
   })
+
+  console.log({ data, key: getQueryKey(search) })
 
   if (isError) {
     return (

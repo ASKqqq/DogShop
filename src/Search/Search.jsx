@@ -8,7 +8,7 @@ export const Search = () => {
 
   const dispatch = useDispatch()
 
-  const debouncedSearchValue = useDebounce(search, 1500)
+  const debouncedSearchValue = useDebounce(search, 1000)
 
   const searchHandler = (e) => {
     const searchValue = e.target.value

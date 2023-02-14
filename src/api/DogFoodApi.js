@@ -14,6 +14,7 @@ class DogFoodApi {
   // }
 
   async checkToken(token) {
+    console.log('>>>>>>>', token)
     if (!token) throw new Error('Отсутствует токен')
 
     const res = await fetch(`${this.baseUrl}/v2/sm9/users/me`, {

@@ -2,6 +2,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { DF_TOKEN_KEY } from './constats'
 import { getInitState } from './ininState'
+import { cartReducer } from './slices/cartSlice'
 import { filterReducer } from './slices/filterSlice'
 import { userReducer } from './slices/userSlise'
 
@@ -9,6 +10,7 @@ export const store = configureStore({
   reducer: {
     user: userReducer,
     filter: filterReducer,
+    cart: cartReducer,
   },
   preloadedState: getInitState(),
 })
