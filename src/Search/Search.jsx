@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useDebounce } from '../components/hooks/useDebounce'
 import { changeSearchFilter } from '../redux/slices/filterSlice'
 
-export const Search = () => {
+function Search() {
   const [search, setSearch] = useState('')
 
   const dispatch = useDispatch()
@@ -22,10 +22,13 @@ export const Search = () => {
   return (
     <input
       placeholder="Найти товар..."
-      type="text"
+      type="search"
+      className="form-control"
       style={{ width: '500px', margin: '24px auto' }}
       value={search}
       onChange={searchHandler}
     />
   )
 }
+
+export default Search

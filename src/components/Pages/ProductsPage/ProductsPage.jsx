@@ -5,20 +5,36 @@ import { useNavigate } from 'react-router-dom'
 import { dogFoodApi } from '../../../api/DogFoodApi'
 import { getSearchSelector } from '../../../redux/slices/filterSlice'
 import { getTokenSelector } from '../../../redux/slices/userSlise'
-import { Search } from '../../../Search/Search'
-import { Loader } from '../../Loader/Loader'
+import Search from '../../../Search/Search'
+import { withQuery } from '../../HOCs/withQuery'
 import { Product } from '../Product/Product'
 import productPageStyles from './ProductsPage.module.css'
 import { getQueryKey } from './utils'
 
-// export const ProductsPage = () => <h1>This page will have products</h1>
+function ProductsInner({ data }) {
+  // console.log({ data })
+  // const products = data
+  if (data) {
+    return (
+      <>
+        <Search />
 
-export function ProductsPage() {
-  // const { token } = useQueryContext()
+        <div className={productPageStyles.productsContainer}>
+          {data.products.map(({ _id: id, ...restProduct }) => (
+            <Product {...restProduct} id={id} key={id} />
+          ))}
+        </div>
+      </>
+    )
+  }
+}
+const ProductsInnerWithQuery = withQuery(ProductsInner)
+
+export const ProductsPage = () => {
+  // console.log('ProductsPage')
   const token = useSelector(getTokenSelector)
-  // console.log({ token })
-
   const navigate = useNavigate()
+  const search = useSelector(getSearchSelector)
 
   useEffect(() => {
     if (!token) {
@@ -26,50 +42,38 @@ export function ProductsPage() {
     }
   }, [token])
 
-  const search = useSelector(getSearchSelector)
-
   const {
-    data, isError, error, isLoading,
+    data,
+    isError,
+    error,
+    isLoading,
+    refetch,
   } = useQuery({
     queryKey: getQueryKey(search),
     queryFn: () => dogFoodApi.getAllProducts(search, token),
-    enabled: !!(token),
+    enabled: !!token,
   })
 
-  console.log({ data, key: getQueryKey(search) })
-
-  if (isError) {
-    return (
-      <p>
-        Произошла ошибка:
-        {' '}
-        {error.message}
-      </p>
-    )
-  }
-
-  if (isLoading) {
-    return (
-      <p>
-        <Loader />
-      </p>
-    )
-  }
-
-  // if (data === undefined) {
-  //   return <p>Empty content</p>
+  // if (data) {
+  //   return (
+  //     <>
+  //       <Search />
+  //       <div className={productPageStyles.productsContainer}>
+  //         {data.products.map(({ _id: id, ...restProduct }) => (
+  //           <Product {...restProduct} id={id} key={id} />
+  //         ))}
+  //       </div>
+  //     </>
+  //   )
   // }
-
   return (
-    <>
-      <Search />
-      <div className={productPageStyles.productsContainer}>
-
-        {data.products.map(({ _id: id, ...restProduct }) => (
-          <Product {...restProduct} id={id} key={id} />
-        ))}
-      </div>
-
-    </>
+    <ProductsInnerWithQuery
+      data={data}
+      isError={isError}
+      isLoading={isLoading}
+      error={error}
+      refetch={refetch}
+      // search={search}
+    />
   )
 }
