@@ -17,8 +17,9 @@ function ProductsInner({ data }) {
   if (data) {
     return (
       <>
-        <Search />
-
+        <div className={productPageStyles.productsContainer}>
+          <Search />
+        </div>
         <div className={productPageStyles.productsContainer}>
           {data.products.map(({ _id: id, ...restProduct }) => (
             <Product {...restProduct} id={id} key={id} />
@@ -43,15 +44,12 @@ export const ProductsPage = () => {
   }, [token])
 
   const {
-    data,
-    isError,
-    error,
-    isLoading,
-    refetch,
+    data, isError, error, isLoading, refetch,
   } = useQuery({
     queryKey: getQueryKey(search),
     queryFn: () => dogFoodApi.getAllProducts(search, token),
     enabled: !!token,
+    keepPreviousData: true,
   })
 
   // if (data) {

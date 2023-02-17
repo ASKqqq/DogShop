@@ -24,14 +24,6 @@ export const Header = () => {
               <img src={logo} className="logo" alt="logo" />
             </Link>
           </div>
-          <div className={headerStayles.inputfind}>
-            <input
-              type="text"
-              className="form-control"
-              id="floatingInput"
-              placeholder="find..."
-            />
-          </div>
           <nav className={headerStayles.nav}>
             <li>
               <div className={headerStayles.counter}>
