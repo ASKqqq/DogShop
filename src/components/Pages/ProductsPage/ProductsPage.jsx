@@ -44,7 +44,7 @@ export const ProductsPage = () => {
   }, [token])
 
   const {
-    data, isError, error, isLoading, refetch,
+    data, isError, error, isLoading, refetch, isFetching,
   } = useQuery({
     queryKey: getQueryKey(search),
     queryFn: () => dogFoodApi.getAllProducts(search, token),
@@ -71,6 +71,7 @@ export const ProductsPage = () => {
       isLoading={isLoading}
       error={error}
       refetch={refetch}
+      isFetching={isFetching}
       // search={search}
     />
   )
