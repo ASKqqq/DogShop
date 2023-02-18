@@ -48,9 +48,18 @@ export const Header = () => {
                 </li>
               )}
             </div>
-            <li>
+            {token ? (
+              <li>
+                <NavLink to="/profile">Профиль</NavLink>
+              </li>
+            ) : (
+              <li>
+                <NavLink to="/signup">Регистраци</NavLink>
+              </li>
+            )}
+            {/* <li>
               <Link to="/signup">Регистрация</Link>
-            </li>
+            </li> */}
           </nav>
         </div>
       </div>

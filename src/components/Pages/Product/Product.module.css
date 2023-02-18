@@ -23,12 +23,12 @@
   height: 60px;
 }
 
-.h2 {
+.h4 {
   color: red;
 }
 
 .h4Name {
-  font-weight: 600;
+  font-weight: 100;
 }
 /* 
 .descriptionCardPorduct::-webkit-scrollbar {
@@ -53,7 +53,7 @@
 
 
 .styleForm button {
-  background: #fbc02d;
+  background: #ffeb3b;
   color: rgb(8, 0, 57);
   text-decoration: none;
   border-radius: 6px;
@@ -66,6 +66,11 @@
   transition: all 0.3s;
   cursor: pointer;
   padding: 15px;
+}
+
+.styleForm button:hover {
+  cursor: pointer;
+  background-color: #fbc02d;
 }
 /* 
 .styleForm button:hover {
@@ -80,8 +85,10 @@
 }
 
 .productImg img {
-  width: 250px;
-  max-height: 320px;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
 }
 
 .styleButtonCardProduct {

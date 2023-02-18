@@ -26,12 +26,12 @@ export const Product = ({
         <div className={productsStyles.productImg}>
           <img src={pictures} alt="" />
         </div>
-        <h2 className={productsStyles.h2}>
+        <h4 className={productsStyles.h4}>
           {price}
           &nbsp;&#8381;
-        </h2>
+        </h4>
         <p>{wight}</p>
-        <h4 className={productsStyles.h4Name}>{name}</h4>
+        <h6 className={productsStyles.h4Name}>{name}</h6>
         {/* <p>{likes}</p> */}
         {/* <p className={productsStyles.descriptionCardPorduct}>{description}</p> */}
         <div className={productsStyles.styleButtonCardProduct}>

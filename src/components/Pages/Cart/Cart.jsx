@@ -3,6 +3,7 @@
 /* eslint-disable max-len */
 import { useDispatch, useSelector } from 'react-redux'
 import { useQuery } from '@tanstack/react-query'
+import { Link } from 'react-router-dom'
 import { getQueryCartKey } from '../ProductsPage/utils'
 import { dogFoodApi } from '../../../api/DogFoodApi'
 import {
@@ -71,6 +72,19 @@ function Cart() {
   }, 0)
   if (isLoading) return <Loader />
   if (isError) return <p>{`${error} `}</p>
+
+  if (!cartProducts.length) {
+    return (
+      <div className={CartStyles.CartPage}>
+        <h1 className={CartStyles.header}>Корзина</h1>
+        <div className={CartStyles.containerEmpty}>
+          <h3>Здесь пока ничего нет</h3>
+          <Link to="/products">Наши товары</Link>
+          <Link to="/profile">Личный кабинет</Link>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className={CartStyles.CartPage}>
