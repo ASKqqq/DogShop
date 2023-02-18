@@ -5,12 +5,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 // import { useQueryContext } from '../../context/QueryContextProvider'
 import logo from '../../img/logo.png'
+import { getAllCartProductsSelector } from '../../redux/slices/cartSlice'
 import { getTokenSelector, logOut } from '../../redux/slices/userSlise'
+import { Counter } from '../commonUI/Counter/Counter'
 import headerStayles from './Header.module.css'
 
 export const Header = () => {
-  // const { deleteToken, token } = useQueryContext()
   const token = useSelector(getTokenSelector)
+  const cart = useSelector(getAllCartProductsSelector)
   const dispatch = useDispatch()
   const deleteToken = () => {
     dispatch(logOut())
@@ -29,12 +31,7 @@ export const Header = () => {
               <div className={headerStayles.counter}>
                 <NavLink to="/cart">
                   <FontAwesomeIcon icon={faCartShopping} size="xl" />
-                  <span
-                    className="top-0 start-100
-              translate-middle badge rounded-pill bg-danger"
-                  >
-                    4
-                  </span>
+                  {cart.length ? <Counter count={cart.length} /> : null}
                 </NavLink>
               </div>
             </li>
