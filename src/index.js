@@ -13,6 +13,7 @@ import { RegistrationPage } from './components/Pages/RegistrationPage/Registrati
 import { AutentificationPage } from './components/Pages/AutentificationPage/AutentificationPage'
 import { Main } from './components/Main/Main'
 import { store } from './redux/store'
+import Cart from './components/Pages/Cart/Cart'
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: 'signin',
         element: <AutentificationPage />,
+      },
+      {
+        path: '/cart',
+        element: <Cart />,
       },
     ],
   },

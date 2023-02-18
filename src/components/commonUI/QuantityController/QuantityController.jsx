@@ -1,18 +1,16 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { addCartItem, getCartSelector, removeItemFromCart } from '../../../redux/slices/cartSlice'
+import { useDispatch } from 'react-redux'
+// eslint-disable-next-line max-len
+import { productDecrement, productIncrement } from '../../../redux/slices/cartSlice'
 import QuantityControllerStyles from './QuantityController.module.css'
 
-export function QuantityController({ id, stock }) {
+export function QuantityController({ id, stock, count }) {
   const dispatch = useDispatch()
-  const cart = useSelector(getCartSelector)
-  const addToCartHandler = () => {
-    // console.log('Product added to cart', id)
-    dispatch(addCartItem({ id, stock }))
+  // const cart = useSelector(getAllCartProductsSelector)
+  const incrementCountHandler = () => {
+    dispatch(productIncrement(id))
   }
-
-  const removeFromCartHandler = () => {
-    // console.log('Product removed from cart', id)
-    dispatch(removeItemFromCart(id))
+  const decrementCountHandler = () => {
+    dispatch(productDecrement(id))
   }
   return (
     <div className={QuantityControllerStyles.container}>
@@ -20,17 +18,17 @@ export function QuantityController({ id, stock }) {
         <button
           type="button"
           className={QuantityControllerStyles.btn}
-          onClick={removeFromCartHandler}
-          disabled={cart[id]?.count === 1}
+          onClick={decrementCountHandler}
+          disabled={count === 1}
         >
           -
         </button>
-        <p className={QuantityControllerStyles.count}>{cart[id]?.count}</p>
+        <p className={QuantityControllerStyles.count}>{count}</p>
         <button
           type="button"
           className={QuantityControllerStyles.btn}
-          onClick={addToCartHandler}
-          disabled={cart[id]?.count === stock}
+          onClick={incrementCountHandler}
+          disabled={count === stock}
         >
           +
         </button>

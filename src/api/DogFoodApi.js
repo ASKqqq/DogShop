@@ -151,7 +151,6 @@ class DogFoodApi {
 
   async getProductsByIds(ids, token) {
     this.checkToken(token)
-    // console.log({ ids })
     return Promise.all(ids.map(
       (id) => fetch(`${this.baseUrl}/products/${id}`, {
         headers: {

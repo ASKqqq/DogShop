@@ -27,13 +27,15 @@ export const Header = () => {
           <nav className={headerStayles.nav}>
             <li>
               <div className={headerStayles.counter}>
-                <FontAwesomeIcon icon={faCartShopping} size="xl" />
-                <span
-                  className="top-0 start-100
+                <NavLink to="/cart">
+                  <FontAwesomeIcon icon={faCartShopping} size="xl" />
+                  <span
+                    className="top-0 start-100
               translate-middle badge rounded-pill bg-danger"
-                >
-                  4
-                </span>
+                  >
+                    4
+                  </span>
+                </NavLink>
               </div>
             </li>
             <div>

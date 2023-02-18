@@ -12,8 +12,6 @@ import productPageStyles from './ProductsPage.module.css'
 import { getQueryKey } from './utils'
 
 function ProductsInner({ data }) {
-  // console.log({ data })
-  // const products = data
   if (data) {
     return (
       <>
@@ -32,7 +30,6 @@ function ProductsInner({ data }) {
 const ProductsInnerWithQuery = withQuery(ProductsInner)
 
 export const ProductsPage = () => {
-  // console.log('ProductsPage')
   const token = useSelector(getTokenSelector)
   const navigate = useNavigate()
   const search = useSelector(getSearchSelector)

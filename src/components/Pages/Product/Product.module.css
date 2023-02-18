@@ -87,3 +87,7 @@
 .styleButtonCardProduct {
   display: flex;
 }
+
+.btnColor {
+  color: aqua;
+}
