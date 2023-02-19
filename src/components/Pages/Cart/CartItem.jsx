@@ -14,7 +14,7 @@ function CartItem({
   id,
   stock,
   wight,
-  isChecked,
+  isPicked,
   count,
 }) {
   const dispatch = useDispatch()
@@ -31,7 +31,7 @@ function CartItem({
           type="checkbox"
           name="select"
           id=""
-          checked={isChecked}
+          checked={isPicked}
           onChange={selectProductHandler}
         />
       </div>

@@ -8,6 +8,7 @@
     padding: 1rem;
     border-radius: 5px;
     align-items: flex-start;
+    border: 2px solid rgb(8, 0, 57);
 }
 
 .imageWr {

@@ -11,13 +11,11 @@
 // export function QueryContextProvider({ children }) {
 //   const [token, setToken] = useState(() => {
 //     const takeToken = localStorage.getItem(DF_TOKEN_KEY)
-//     console.log(takeToken)
 //     return takeToken ?? ''
 //   })
 //   useEffect(() => {
 //     localStorage.setItem(DF_TOKEN_KEY, token)
 //     dogFoodApi.setToken(token)
-//     console.log(token)
 //   }, [token])
 
 //   const deleteToken = useCallback(() => setToken(''), [setToken])

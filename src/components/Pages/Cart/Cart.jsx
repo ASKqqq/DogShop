@@ -22,21 +22,12 @@ function Cart() {
   const token = useSelector(getTokenSelector)
   const dispatch = useDispatch()
   const {
-    data: cartProducts,
-    isLoading,
-    isError,
-    error,
+    data: cartProducts, isLoading, isError, error,
   } = useQuery({
     queryKey: getQueryCartKey(cart.length),
-    queryFn: () => dogFoodApi.getProductsByIds(
-      cart.map((product) => product.id),
-      token,
-    ),
-    enabled: !!token,
+    queryFn: () => dogFoodApi.getProductsByIds(cart.map((product) => product.id), token),
+    enabled: !!(token),
   })
-  const clearCartHandler = () => {
-    dispatch(clearCart())
-  }
   const isAllCardPicked = () => cart.filter((item) => item.isPicked === true).length === cart.length
   const findAllPickedProducts = () => {
     const allPickedProducts = []
@@ -47,27 +38,26 @@ function Cart() {
   }
 
   const getCartProductById = (idItem) => cartProducts.find((product) => product._id === idItem)
-  // const getCartStateProductById = (idItem) => cart.find((product) => product.id === idItem)
+  const getCartStateProductById = (idItem) => cart.find((product) => product.id === idItem)
+
   const pickAllProductsHandler = () => {
     if (!isAllCardPicked()) dispatch(pickAllProducts())
     else dispatch(notPickAllProducts())
+  }
+
+  const clearCartHandler = () => {
+    dispatch(clearCart())
   }
   const calculateSum = () => findAllPickedProducts().reduce((sum, product) => {
     const updatedSum = sum + product.count * getCartProductById(product.id).price
     return Math.ceil(updatedSum)
   }, 0)
   const calculateDiscount = () => findAllPickedProducts().reduce((sum, product) => {
-    const updatedSum = sum
-        + product.count
-          * getCartProductById(product.id).price
-          * (getCartProductById(product.id).discount / 100)
+    const updatedSum = sum + product.count * getCartProductById(product.id).price * (getCartProductById(product.id).discount / 100)
     return Math.ceil(updatedSum)
   }, 0)
   const calculateSumWithDiscount = () => findAllPickedProducts().reduce((sum, product) => {
-    const updatedSum = sum
-        + product.count
-          * getCartProductById(product.id).price
-          * ((100 - getCartProductById(product.id).discount) / 100)
+    const updatedSum = sum + product.count * getCartProductById(product.id).price * ((100 - getCartProductById(product.id).discount) / 100)
     return Math.ceil(updatedSum)
   }, 0)
   if (isLoading) return <Loader />
@@ -88,21 +78,20 @@ function Cart() {
 
   return (
     <div className={CartStyles.CartPage}>
-      <h1 className={CartStyles.header}>Корзина</h1>
       <div className={CartStyles.cartContent}>
         <div className={CartStyles.cartItems}>
           <div className={CartStyles.selectAllWr}>
-            <label htmlFor="checkAll">
+            <div className={CartStyles.input}>
               <input
+              // className={CartStyles.input}
                 type="checkbox"
-                name=""
                 id="checkAll"
                 onChange={pickAllProductsHandler}
                 checked={isAllCardPicked()}
               />
               {' '}
               {isAllCardPicked() ? 'Снять выделение' : 'Выбрать все'}
-            </label>
+            </div>
             <button
               type="button"
               className={CartStyles.btn}
@@ -112,8 +101,19 @@ function Cart() {
             </button>
           </div>
           <div className={CartStyles.container}>
-            {cartProducts.map(({ _id: id, ...restProduct }) => (
-              <CartItem {...restProduct} id={id} key={id} />
+            {cartProducts.map((item) => (
+              <CartItem
+                key={item._id}
+                id={item._id}
+                name={item.name}
+                price={item.price}
+                pictures={item.pictures}
+                stock={item.stock}
+                discount={item.discount}
+                description={item.description}
+                isPicked={getCartStateProductById(item._id).isPicked}
+                count={getCartStateProductById(item._id).count}
+              />
             ))}
           </div>
         </div>
@@ -122,19 +122,19 @@ function Cart() {
           <div className={CartStyles.cartTotal}>
             <div>
               <span className={CartStyles.bold}>Итого: </span>
-              {calculateSum}
+              {calculateSum()}
               {' '}
               товаров
             </div>
-            <div>
+            {/* <div>
               <span className={CartStyles.bold}>Сумма без скидки: </span>
-              {calculateSumWithDiscount}
+              {calculateSumWithDiscount()}
               {' '}
               рублей
-            </div>
+            </div> */}
             <div>
               <span className={CartStyles.bold}>Скидка: </span>
-              {calculateDiscount}
+              {calculateDiscount()}
               {' '}
               рублей
             </div>
@@ -143,7 +143,7 @@ function Cart() {
                 Сумма заказа со скидками:
                 {' '}
               </span>
-              {111}
+              {calculateSumWithDiscount()}
               {' '}
               рублей
             </div>
