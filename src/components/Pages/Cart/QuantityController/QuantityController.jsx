@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux'
-// eslint-disable-next-line max-len
-import { productDecrement, productIncrement } from '../../../redux/slices/cartSlice'
+import { productDecrement, productIncrement } from '../../../../redux/slices/cartSlice'
 import QuantityControllerStyles from './QuantityController.module.css'
 
 export function QuantityController({ id, stock, count }) {

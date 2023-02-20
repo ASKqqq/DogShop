@@ -7,7 +7,7 @@ import { Link, NavLink } from 'react-router-dom'
 import logo from '../../img/logo.png'
 import { getAllCartProductsSelector } from '../../redux/slices/cartSlice'
 import { getTokenSelector, logOut } from '../../redux/slices/userSlise'
-import { Counter } from '../commonUI/Counter/Counter'
+import { Counter } from './Counter/Counter'
 import headerStayles from './Header.module.css'
 
 export const Header = () => {

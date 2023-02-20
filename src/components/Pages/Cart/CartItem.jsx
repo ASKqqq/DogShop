@@ -3,7 +3,7 @@ import {
   changeIsPickProduct,
   deleteProduct,
 } from '../../../redux/slices/cartSlice'
-import { QuantityController } from '../../commonUI/QuantityController/QuantityController'
+import { QuantityController } from './QuantityController/QuantityController'
 import CartItemStyles from './CartItem.module.css'
 
 function CartItem({
