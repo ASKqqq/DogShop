@@ -148,7 +148,7 @@ function Cart() {
               рублей
             </div>
           </div>
-          <button type="button" className="btn btn-action">
+          <button type="button" className={CartStyles.btnDesign}>
             Оформить
           </button>
         </div>

@@ -99,3 +99,15 @@
     flex-direction: column;
     gap: 0.5rem;
 }
+
+.btnDesign {
+    border-radius: 25px;
+    padding: 0.5rem 1rem;
+    background-color: #ffeb3b;
+    border: 1px solid black;
+}
+
+.btnDesign:hover {
+    cursor: pointer;
+    background-color: #fbc02d;
+}
