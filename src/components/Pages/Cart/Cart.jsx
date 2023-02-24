@@ -4,6 +4,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
+import { useCallback } from 'react'
 import { getQueryCartKey } from '../ProductsPage/utils'
 import { dogFoodApi } from '../../../api/DogFoodApi'
 import {
@@ -36,9 +37,23 @@ function Cart() {
     })
     return allPickedProducts
   }
+  console.log('>>>>>>>>', findAllPickedProducts())
 
-  const getCartProductById = (idItem) => cartProducts.find((product) => product._id === idItem)
-  const getCartStateProductById = (idItem) => cart.find((product) => product.id === idItem)
+  const getCartProductById = useCallback((idItem) => {
+    const res = cartProducts.find((product) => product._id === idItem)
+    if (res) {
+      return res
+    }
+    return false
+  }, [cartProducts])
+
+  const getCartStateProductById = useCallback((idItem) => {
+    const res = cart.find((product) => product.id === idItem)
+    if (res) {
+      return res
+    }
+    return false
+  }, [cart])
 
   const pickAllProductsHandler = () => {
     if (!isAllCardPicked()) dispatch(pickAllProducts())
@@ -46,7 +61,7 @@ function Cart() {
   }
 
   const clearCartHandler = () => {
-    dispatch(clearCart())
+    dispatch(clearCart(findAllPickedProducts()))
   }
   const calculateSum = () => findAllPickedProducts().reduce((sum, product) => {
     const updatedSum = sum + product.count * getCartProductById(product.id).price
@@ -111,8 +126,8 @@ function Cart() {
                 stock={item.stock}
                 discount={item.discount}
                 description={item.description}
-                isPicked={getCartStateProductById(item._id).isPicked}
-                count={getCartStateProductById(item._id).count}
+                isPicked={getCartStateProductById(item._id)?.isPicked}
+                count={getCartStateProductById(item._id)?.count}
               />
             ))}
           </div>

@@ -49,8 +49,11 @@ const cartSlice = createSlice({
     deleteProduct(state, action) {
       return state.filter((product) => product.id !== action.payload)
     },
-    clearCart() {
-      return []
+    clearCart(state, action) {
+      action.payload.forEach((el) => {
+        const index = state.findIndex((product) => product.id === el.id)
+        state.splice(index, 1)
+      })
     },
     addNewProduct: {
       reducer(state, action) {
