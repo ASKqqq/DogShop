@@ -54,7 +54,7 @@ export const Header = () => {
               </li>
             ) : (
               <li>
-                <NavLink to="/signup">Регистраци</NavLink>
+                <NavLink to="/signup">Регистрация</NavLink>
               </li>
             )}
             {/* <li>
