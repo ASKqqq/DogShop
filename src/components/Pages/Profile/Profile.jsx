@@ -18,6 +18,9 @@ function ProfileInner({ user, isLoading }) {
   const productsPageHandler = () => {
     navigate('/products')
   }
+  const cartPageHandler = () => {
+    navigate('/cart')
+  }
   return (
     <div className={ProfileStyles.Profile}>
       <h1>Личный кабинет</h1>
@@ -30,18 +33,48 @@ function ProfileInner({ user, isLoading }) {
           />
         </p>
         <p>{user.name}</p>
-        <p>{user.email}</p>
+        <p>
+          Группа:
+          {' '}
+          {user.group}
+        </p>
+        <p>
+          Статус:
+          {' '}
+          {user.about}
+        </p>
+        <p>
+          Email:
+          {' '}
+          {user.email}
+        </p>
+        <div className={ProfileStyles.btnWr}>
+          <button
+            type="button"
+            className={ProfileStyles.btn}
+            onClick={productsPageHandler}
+          >
+            В каталог
+          </button>
+          <button
+            type="button"
+            className={ProfileStyles.btn}
+          >
+            В избранное
+          </button>
+          <button
+            type="button"
+            className={ProfileStyles.btn}
+            onClick={cartPageHandler}
+          >
+            В корзину
+          </button>
+        </div>
         <button
-          type="button"
-          className={ProfileStyles.btn}
-          onClick={productsPageHandler}
-        >
-          В каталог
-        </button>
-        <button
+          className={ProfileStyles.btnExit}
           disabled={isLoading}
           type="button"
-          className={ProfileStyles.btn}
+          // className={ProfileStyles.btn}
           onClick={logoutHandler}
         >
           Выйти

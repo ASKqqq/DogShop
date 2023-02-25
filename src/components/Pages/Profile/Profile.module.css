@@ -16,6 +16,19 @@
   min-height: calc(100vh - 250px);
 }
 
+.container p {
+  margin: 0px;
+  line-height: normal;
+}
+
+.btnWr {
+  display: flex;
+}
+
+.btnWr button {
+  margin: 10px;
+}
+
 .btn {
     border-radius: 25px;
     padding: 0.5rem 1rem;
@@ -24,6 +37,19 @@
   }
   
   .btn:hover {
+    cursor: pointer;
+    background-color: #fbc02d;
+  }
+
+  .btnExit {
+    width: 25%;
+    border-radius: 25px;
+    padding: 0.5rem 1rem;
+    background-color: #ffeb3b;
+    border: 1px solid black;
+  }
+
+  .btnExit:hover {
     cursor: pointer;
     background-color: #fbc02d;
   }
