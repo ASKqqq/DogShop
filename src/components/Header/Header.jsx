@@ -1,11 +1,12 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import { faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 // import { useQueryContext } from '../../context/QueryContextProvider'
 import logo from '../../img/logo.png'
 import { getAllCartProductsSelector } from '../../redux/slices/cartSlice'
+import { getAllFavoriteProductsSelector } from '../../redux/slices/favoriteSlice'
 import { getTokenSelector, logOut } from '../../redux/slices/userSlise'
 import { Counter } from './Counter/Counter'
 import headerStayles from './Header.module.css'
@@ -13,6 +14,7 @@ import headerStayles from './Header.module.css'
 export const Header = () => {
   const token = useSelector(getTokenSelector)
   const cart = useSelector(getAllCartProductsSelector)
+  const favorites = useSelector(getAllFavoriteProductsSelector)
   const dispatch = useDispatch()
   const deleteToken = () => {
     dispatch(logOut())
@@ -27,6 +29,28 @@ export const Header = () => {
             </Link>
           </div>
           <nav className={headerStayles.nav}>
+            <li>
+              {/* <div className={headerStayles.like}> */}
+              {!favorites.length ? (
+                <NavLink to="/favorites">
+                  <FontAwesomeIcon
+                    icon={faHeart}
+                    size="xl"
+                    className={headerStayles.like}
+                  />
+                </NavLink>
+              ) : ''}
+              {favorites.length ? (
+                <NavLink to="/favorites">
+                  <FontAwesomeIcon
+                    icon={faHeart}
+                    size="xl"
+                    style={{ color: 'red' }}
+                  />
+                </NavLink>
+              ) : ''}
+              {/* </div> */}
+            </li>
             <li>
               <div className={headerStayles.counter}>
                 <NavLink to="/cart">

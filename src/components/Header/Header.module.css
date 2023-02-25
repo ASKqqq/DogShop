@@ -57,3 +57,7 @@ header logo {
   border-radius: 100px;
   margin: 0 20px 0 20px;
 }
+
+.like {
+  border: black;
+}
