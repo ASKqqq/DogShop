@@ -18,6 +18,9 @@ function ProfileInner({ user, isLoading }) {
   const productsPageHandler = () => {
     navigate('/products')
   }
+  const favoritePageHandler = () => {
+    navigate('/favorites')
+  }
   const cartPageHandler = () => {
     navigate('/cart')
   }
@@ -59,6 +62,7 @@ function ProfileInner({ user, isLoading }) {
           <button
             type="button"
             className={ProfileStyles.btn}
+            onClick={favoritePageHandler}
           >
             В избранное
           </button>
