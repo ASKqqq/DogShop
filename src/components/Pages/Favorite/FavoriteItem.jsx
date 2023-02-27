@@ -1,22 +1,29 @@
-import { QuantityController } from './QuantityController/QuantityController'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  addNewProduct,
+  deleteProduct,
+  getAllCartProductsSelector,
+} from '../../../redux/slices/cartSlice'
+import { removeFavorite } from '../../../redux/slices/favoriteSlice'
 import FavoriteStyles from './FavoriteItem.module.css'
 
 function FavoriteItem({
-  name,
-  pictures,
-  price,
-  discount,
-  id,
-  stock,
-  wight,
-  count,
+  name, pictures, price, discount, wight, id, description, stock,
 }) {
-  // const cartProducts = useSelector(getAllCartProductsSelector)
-  // const dispatch = useDispatch()
+  const cartProducts = useSelector(getAllCartProductsSelector)
+  const dispatch = useDispatch()
 
-  // const deleteProductHandler = () => {
-  //   dispatch(deleteProduct(id))
-  // }
+  const removeFromFavoriteHandler = () => {
+    dispatch(removeFavorite(id))
+  }
+  const moveToCartHandler = () => {
+    dispatch(addNewProduct(id))
+  }
+  const removeFromCartHandler = () => {
+    dispatch(deleteProduct(id))
+  }
+
+  const isInCart = (productListId) => cartProducts.find((product) => product.id === productListId)
 
   return (
     <div className={FavoriteStyles.card}>
@@ -30,24 +37,38 @@ function FavoriteItem({
           {discount === 0 && `${price} ₽`}
         </p>
         {discount > 0 && (
-          <p
-            style={{ textDecoration: 'line-through', color: 'gray' }}
-          >
+          <p style={{ textDecoration: 'line-through', color: 'gray' }}>
             {price}
             ₽
           </p>
         )}
         <p className={FavoriteStyles.weight}>{wight}</p>
+        <p>
+          В наличии
+          {' '}
+          {stock}
+          {' '}
+          штук
+        </p>
+        <p>{description}</p>
         <div className={FavoriteStyles.btnWr}>
-          <button type="button" className={FavoriteStyles.btn}>
-            В избранное
+          <button
+            type="submit"
+            className={FavoriteStyles.btn}
+            onClick={isInCart(id) ? removeFromCartHandler : moveToCartHandler}
+          >
+            {isInCart(id) ? 'В корзине' : 'В корзину'}
           </button>
-          <button type="button" className={FavoriteStyles.btn}>
+          <button
+            type="button"
+            className={FavoriteStyles.btn}
+            onClick={removeFromFavoriteHandler}
+          >
             Удалить
           </button>
         </div>
       </div>
-      <div className={FavoriteStyles.quantityControllerWr}>
+      {/* <div className={FavoriteStyles.quantityControllerWr}>
         <QuantityController id={id} stock={stock} count={count} />
         <div className={FavoriteStyles.available}>
           В наличии
@@ -56,7 +77,7 @@ function FavoriteItem({
           {' '}
           штук
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

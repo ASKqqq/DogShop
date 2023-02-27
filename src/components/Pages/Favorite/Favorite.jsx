@@ -48,45 +48,24 @@ function Favorites() {
 
   return (
     <div className={FavoriteStyles.CartPage}>
-      <div className={FavoriteStyles.cartContent}>
-        <div className={FavoriteStyles.cartItems}>
-          <div className={FavoriteStyles.selectAllWr}>
-            {/* <div className={FavoriteStyles.input}>
-              <input
-              // className={CartStyles.input}
-                type="checkbox"
-                id="checkAll"
-                onChange={pickAllProductsHandler}
-                checked={isAllCardPicked()}
-              />
-              {' '}
-              {isAllCardPicked() ? 'Снять выделение' : 'Выбрать все'}
-            </div> */}
-            {/* <button
-              type="button"
-              className={FavoriteStyles.btn}
-              onClick={clearCartHandler}
-            >
-              Удалить выбранные
-            </button> */}
-          </div>
-          <div className={FavoriteStyles.container}>
-            {favoriteProducts.map((item) => (
-              <FavoriteItem
-                key={item._id}
-                id={item._id}
-                name={item.name}
-                price={item.price}
-                pictures={item.pictures}
-                stock={item.stock}
-                discount={item.discount}
-                description={item.description}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
+      {/* <div className={FavoriteStyles.cartContent}>
+   <div className={FavoriteStyles.cartItems}> */}
+
+      {favoriteProducts.map((item) => (
+        <FavoriteItem
+          key={item._id}
+          id={item._id}
+          name={item.name}
+          price={item.price}
+          pictures={item.pictures}
+          stock={item.stock}
+          discount={item.discount}
+          description={item.description}
+        />
+      ))}
     </div>
+  //   </div>
+  // </div>
   )
 }
 
