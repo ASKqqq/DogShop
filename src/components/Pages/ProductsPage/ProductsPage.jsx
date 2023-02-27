@@ -15,8 +15,9 @@ function ProductsInner({ data }) {
   if (data) {
     return (
       <>
-        <div className={productPageStyles.productsContainer}>
+        <div className={productPageStyles.searchBtn}>
           <Search />
+          <button type="button">Добаить товар</button>
         </div>
         <div className={productPageStyles.productsContainer}>
           {data.products.map(({ _id: id, ...restProduct }) => (

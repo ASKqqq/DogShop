@@ -3,6 +3,31 @@
   height: 500px;
 }
 
+.searchBtn {
+  font-family: Georgia, serif;
+  margin-top: 0;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.searchBtn button {
+  width: max-content;
+  padding: 0.5rem;
+  border-radius: 6px;
+  background-color: #ffeb3b;
+  border: 1px solid black;
+}
+
+.searchBtn button:hover {
+  cursor: pointer;
+  background-color: #fbc02d;
+}
+
+
 .productsContainer {
   font-family: Georgia, serif;
   margin-top: 0;

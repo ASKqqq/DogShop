@@ -34,7 +34,7 @@ function Search() {
       placeholder="Найти товар..."
       type="search"
       className={`form-control ${searchStayles.border}`}
-      style={{ width: '500px', margin: '24px auto' }}
+      style={{ width: '500px' }}
       value={search}
       onChange={searchHandler}
     />
