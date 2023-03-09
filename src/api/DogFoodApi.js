@@ -127,6 +127,23 @@ class DogFoodApi {
     return res.json()
   }
 
+  async addProduct(data, token) {
+    this.checkToken(token)
+    const res = await fetch(`${this.baseUrl}/products`, {
+      method: 'POST',
+      headers: {
+        authorization: this.getAuthorizationHeader(token),
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    if (res.status >= 400) {
+      // eslint-disable-next-line max-len
+      throw new Error(`${res.status}: Произошла ошибка при сохранении информации о товаре. ${res.statusText}.`)
+    }
+    return res.json()
+  }
+
   async getProductById(productId, token) {
     this.checkToken(token)
 

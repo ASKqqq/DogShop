@@ -37,7 +37,6 @@ function Cart() {
     })
     return allPickedProducts
   }
-  console.log('>>>>>>>>', findAllPickedProducts())
 
   const getCartProductById = useCallback((idItem) => {
     const res = cartProducts.find((product) => product._id === idItem)

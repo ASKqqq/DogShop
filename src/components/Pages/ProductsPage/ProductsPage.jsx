@@ -17,7 +17,7 @@ function ProductsInner({ data }) {
       <>
         <div className={productPageStyles.searchBtn}>
           <Search />
-          <button type="button">Добаить товар</button>
+          <button type="button">Добавить товар</button>
         </div>
         <div className={productPageStyles.productsContainer}>
           {data.products.map(({ _id: id, ...restProduct }) => (
@@ -50,18 +50,6 @@ export const ProductsPage = () => {
     keepPreviousData: true,
   })
 
-  // if (data) {
-  //   return (
-  //     <>
-  //       <Search />
-  //       <div className={productPageStyles.productsContainer}>
-  //         {data.products.map(({ _id: id, ...restProduct }) => (
-  //           <Product {...restProduct} id={id} key={id} />
-  //         ))}
-  //       </div>
-  //     </>
-  //   )
-  // }
   return (
     <ProductsInnerWithQuery
       data={data}
@@ -70,7 +58,6 @@ export const ProductsPage = () => {
       error={error}
       refetch={refetch}
       isFetching={isFetching}
-      // search={search}
     />
   )
 }

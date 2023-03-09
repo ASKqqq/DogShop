@@ -21,6 +21,7 @@ function Search() {
     const searchValue = e.target.value
     setSearch(searchValue)
     setSearchParams({
+      ...Object.fromEntries(searchParams.entries()),
       q: searchValue,
     })
   }

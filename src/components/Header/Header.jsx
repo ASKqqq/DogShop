@@ -30,7 +30,6 @@ export const Header = () => {
           </div>
           <nav className={headerStayles.nav}>
             <li>
-              {/* <div className={headerStayles.like}> */}
               {!favorites.length ? (
                 <NavLink to="/favorites">
                   <FontAwesomeIcon
@@ -47,9 +46,9 @@ export const Header = () => {
                     size="xl"
                     style={{ color: 'red' }}
                   />
+                  {favorites.length ? <Counter count={favorites.length} /> : null}
                 </NavLink>
               ) : ''}
-              {/* </div> */}
             </li>
             <li>
               <div className={headerStayles.counter}>

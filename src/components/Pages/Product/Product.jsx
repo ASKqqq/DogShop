@@ -11,9 +11,9 @@ import {
 } from '../../../redux/slices/favoriteSlice'
 import productsStyles from './Product.module.css'
 
-export const Product = ({
+export function Product({
   pictures, wight, price, name, id, discount,
-}) => {
+}) {
   const cartProducts = useSelector(getAllCartProductsSelector)
   const favorites = useSelector(getAllFavoriteProductsSelector)
   const dispatch = useDispatch()
